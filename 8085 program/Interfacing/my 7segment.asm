@@ -1,0 +1,39 @@
+;program for fun with 7 segment
+
+	org 2000H
+	MVI A,82H
+	OUT 83H
+
+LOOP2:	MVI D,00H
+	LXI H,3000H
+LOOP1:	MOV A,M
+	
+	
+;	MVI A,11001111B
+	OUT 82H
+	INX H
+	INR D
+	MOV A,D
+	CALL 2050H
+	
+	
+	CPI 08H
+	JZ LOOP2
+	
+	JMP LOOP1
+	
+
+	ORG 2050H
+	MVI B,05H
+L3:	MVI C,04H
+L2:	DCR C
+	JNZ L2
+	DCR B
+	JNZ L3
+	RET
+
+	HLT 
+
+	ORG 3000H
+	DB 06H,38H,3FH,3EH,79H,6EH,3FH,3EH
+	
